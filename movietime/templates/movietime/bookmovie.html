@@ -1,0 +1,89 @@
+{% extends "movietime/layout.html" %} 
+
+
+{% block body %}
+<center class="mx-auto header" style="font-family: 'Dancing Script', cursive;" ><h4>Welcome to your Movie Time Booking!</h4></center><hr>
+
+<div class="mx-auto maintext cursive">
+{% if message %}
+    <br>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button></div>
+{% endif %}
+<center><h3 id="moviename"></h3><br><i id="mtagline"></i></center><hr>
+<div class="flex-container align-items-stretch" style="display: flex;flex-wrap: wrap;justify-content: space-around;align-items: center;">
+<div class="card" style="width: 18rem; margin-top:1%;">
+  <img width='100%' align="center">
+  
+  <div class="card-body">
+    <p class="selectedmovie card-text" id="{{movieid}}" data-movieid="{{movieid}}"></p>
+  </div>
+</div>
+
+
+<div class="card" style="width: 18rem; padding:2%; margin-top:1%;">
+
+<form action="{%url 'bookmovie' movieid%}" method = "POST" id="moviebooking">
+    {%csrf_token%}
+    <label for="movie-time">Date for your Screening:</label>
+    <input class="form-control" type="date" id="movie-time" name="moviedate" min="" max="" required readonly>
+    <small class="form-text text-muted">You can book movies a day ahead!</small>
+    <br>
+
+    <label for="timeslot">Choose a Slot for your Screening:</label>
+    <select class="form-control" name="timeslot" id="timeslot" required>
+        <option value="09:00:00" {%if option1 == 0%}disabled{%endif%}>09:00 a.m. ({{option1}} left)</option>
+        <option value="12:00:00" {%if option2 == 0%}disabled{%endif%}>12:00 p.m. ({{option2}} left)</option>
+        <option value="15:00:00" {%if option3 == 0%}disabled{%endif%}>03:00 p.m. ({{option3}} left)</option>
+        <option value="18:00:00" {%if option4 == 0%}disabled{%endif%}>06:00 p.m. ({{option4}} left)</option>
+        <option value="21:00:00" {%if option5 == 0%}disabled{%endif%}>09:00 p.m. ({{option5}} left)</option>
+    </select><br>
+
+    <label for="bookinguser">Booking As:</label>
+    <input class="form-control" type="text" readonly id='bookinguser' name="username" value="{{request.user}}"><br>
+
+    <label for="bookingmovie">Movie Selected:</label>
+    <input class="form-control" type="text" readonly id='bookingmovie' name="moviename"><br>
+
+    <label for="left">Bookings Available for Today:</label>
+    <input class="form-control" type="text" disabled id='left' value = "{{booked}}"><br>
+
+    {%if booked == 0%}
+    <p class="alert alert-danger">Sorry to say, We are all booked for the day! Please Try Again Tomorrow!</p>
+    {%else%}
+    <center><button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#confirm">Book</button></center>
+    
+    {%endif%}
+</form>
+</div>
+</div>
+<!--Modal Confirm-->>
+<div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="color:black;">
+        <div class="modal-dialog modal-dialog" role="document">
+            <div class="modal-content new-post-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Confirm Booking</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+                </div>
+                <div class="modal-body">
+                    <p id="bookmoviedetails"></p>
+                    <p style="font-weight:bold;">Do you want to confirm your booking?</p>
+                    <div class="modal-footer">
+                        
+                           
+                            <center><button class="btn btn-success" form="moviebooking">Confirm Booking</button></center>
+                       
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}
+{%block script%}<script src="../../static/movietime/bookmovie.js"></script> {%endblock%}

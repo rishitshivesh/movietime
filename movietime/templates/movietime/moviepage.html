@@ -1,0 +1,9 @@
+{% extends "movietime/layout.html" %} 
+
+
+{% block body %}
+<div id="bigpicture"></div>
+<div id="mainbody" class="mx-auto"><div class="maintext card-body mx-auto"></div></main>
+<center><a class="btn btn-primary" id="booknow" href="{%url 'bookmovie' movieid %}">Book Now!</a></center>
+{% endblock %}
+{%block script%}<script src="../static/movietime/moviepage.js"></script> {%endblock%}

@@ -1,0 +1,120 @@
+{% extends "movietime/layout.html" %}
+
+{%block title%}MovieTime | {{user.first_name|title}} {{user.last_name}}{%endblock%}
+ {% block body %}
+
+<div class="card border-secondary mb-3" style="margin-left:10%;margin-right:10%;color:black;background-color:rgb(255,255,255,0.6);">
+    <div class="align-middle mx-auto">
+        <center>
+            <h2>Booking History</h2>
+            <hr>
+            <img src={{user.image}} class="rounded-circle" width=240px style="object-fit: cover;">
+            <h4>{{user.first_name}} {{user.last_name}} (@{{user.username}})</h4>
+            <h5>{{user.email}}<br>{{user.countrycode}} - {{user.phonenumber}}</h5>  
+        </center>
+    </div>
+</div>
+<hr>
+<div class="maintable mx-auto" style="margin-bottom:8vh;">
+    <table style="overflow-x:auto; width:100%;">
+        <tr>
+            <td class="heading">Booking Id</td>
+            <td class="heading">Movie Id</td>
+            <td class="big heading">Selected Time</td>
+            <td class="big heading">Booking Time</td>
+            <td class="heading">Booking Status</td>
+        </tr>
+        {% for booking in page %}
+            <tr>
+                <td>{{booking.id}}</td>
+                <td><button type="button" class="btn btn-link editbutton" data-toggle="modal" data-target="#edit" data-bookingid="{{booking.id}}">{{booking.movieid}}</button></td>
+                <td class="big">{{booking.SelectedDate}} : {{booking.SelectedTime}}</td>
+                <td class="big">{{booking.BookingTime}}</td>
+                <td>
+                    {% if booking.cancelled %}<i class='bx bxs-message-square-x' style="color:red;"></i>
+                    {% else %}<i class='bx bxs-message-square-check' style="color:green;"></i>
+                    {% endif %}
+                </td>
+                
+            </tr>
+        {% endfor %}
+    </table>
+
+
+</div>
+
+
+
+
+
+<!--Modal Edit-->>
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="color:black;">
+        <div class="modal-dialog modal-dialog" role="document">
+            <div class="modal-content new-post-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Booking Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+                </div>
+                <div class="modal-body">
+                    <p id="bookmoviedetails"></p>
+                    <div id="moviecancel">
+                    <p style="font-weight:bold;">Do you want to Cancel your booking?</p>
+                    <div class="modal-footer">
+                            <center><button class="btn btn-danger cancelbutton" form="moviebooking">Cancel Booking</button></center>
+                       
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+{% if page %}
+<div class="container fixed-bottom" style="color:black;">
+    <ul class="pagination justify-content-center" style="">
+        {% if page.has_previous %}
+        <li class="page-item"><a href="?page=1" class="page-link btn btn-outline-dark">&laquo;First</a></li>
+        <li class="page-item"><a href="?page={{ page.previous_page_number }}" class="page-link btn btn-outline-dark">Previous</a></li>
+        {% else %}
+        <li class="page-item disabled"><a class="page-link btn btn-outline-dark">&laquo;First</a></li>
+        <li class="page-item disabled"><a class="page-link btn btn-outline-dark">Previous</a></li>
+        {% endif %} {% if page.number %}
+        <li class="page-item"><a class="page-link btn btn-outline-dark">{{ page.number }}</a></li>
+        {% else %}
+        <li class="page-item"><a class="page-link btn btn-outline-dark">0</a></li>
+        {% endif %} {% if page.has_next %}
+        <li class="page-item"><a href="?page={{ page.next_page_number }}" class="page-link btn btn-outline-dark">Next</a></li>
+        <li class="page-item"><a href="?page={{ page.paginator.num_pages }}" class="page-link btn btn-outline-dark">Last&raquo;</a></li>
+        {% else %}
+        <li class="page-item disabled"><a class="page-link">Next</a></li>
+        <li class="page-item disabled"><a class="page-link">Last&raquo;</a></li>
+        {% endif %}
+    </ul>
+</div>
+{% else %}
+<div class="w-75 mx-auto" style="margin-top:2%;">
+        <br>
+        <center>
+        <h1 class="alert alert-warning">Its very lonely here!</h1>
+</div>
+{%endif%}
+
+
+{%endblock%}
+
+{%block script%}<script src="../../static/movietime/profile.js"></script> {%endblock%}

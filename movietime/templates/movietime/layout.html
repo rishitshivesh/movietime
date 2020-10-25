@@ -1,0 +1,137 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{% block title %}MovieTime{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="{% static 'movietime/styles.css' %}" rel="stylesheet">
+    <link rel="icon" href="https://imgur.com/YpdkEY7.png" type="image/png">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#663399">
+    <meta name="msapplication-TileColor" content="#663399">
+    <meta name="msapplication-navbutton-color" content="#663399">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#663399">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Zilla+Slab:wght@500&display=swap" rel="stylesheet">
+    <script src="{% static 'movietime/script.js' %}"></script>
+    {% comment %} <script src="{% static 'movietime/search.js' %}" defer></script>  {% endcomment %}
+    <script src="../static/movietime/react.js" defer></script> 
+    <link href= "{% static 'movietime/movie.css'%}" rel='stylesheet'>
+    {% comment %} <script src="{% static 'network/like.js' %}"></script>
+    <link href="{% static 'network/circle.css' %}" rel="stylesheet">
+    <script src="{% static 'network/circle.js' %}"></script> {% endcomment %}
+    <style>
+        {%block style%}{%endblock%}
+    </style>
+    {%block script%}{%endblock%}
+</head>
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #663399; box-shadow: 0 4px 8px 0 rgba(255, 255, 0, 0.2), 0 6px 20px 0 rgba(255, 255, 0, 0.19);margin-bottom:10px;">
+
+        <a class="navbar-brand" href="{% url 'index' %}" style="color:#FED007;">
+                <div class="cursive" style="">Movie Time</div>
+            </a>
+        <div id="big">
+            <div>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">Recent</a>
+                    </li>
+                    {%block search%}
+                    {%endblock%}
+                    {% if user.is_authenticated %}
+                    {% comment %} <li class="nav-item">
+                        <a class="nav-link" href="{% url 'bookings' %}">View Profile</a>
+                    </li> {% endcomment %}
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    </li>
+                    {% endif %} {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {%if user.first_name%}
+                                <strong>{{ user.first_name }} {{ user.last_name }}</strong>
+                                {%else%}
+                                <strong>{{ user.username }}</strong>
+                                {%endif%}
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="{%url 'bookings' %}">View Your Profile</a>
+                                <a class="dropdown-item" href="{%url 'editprofile'%}">Edit Your Profile</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item hov" href="{% url 'logout' %}">Log Out</a>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    {% endif %}
+
+
+                </ul>
+            </div>
+        </div>
+        <div id="small">
+            <button id="bt" class="ml-auto">☰</button>
+
+            <nav id="navb">
+                <ul>
+
+                    {% if user.is_authenticated %}
+                    <li>{%if user.first_name%}
+                        <strong>{{ user.first_name }} {{ user.last_name }}</strong> {%else%}
+                        <strong>{{ user.username }}</strong> {%endif%}
+
+                    </li>
+                    {%endif%}
+                    <div class="dropdown-divider"></div>
+                    {%block searchs%}
+                    {%endblock%}
+                    
+                    <li><a href="{% url 'index' %}">Recent</a></li>
+                    
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a href="{%url 'bookings'%}">View Profile</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'editprofile'%}">Edit Your Profile</a>
+                    </li>
+                    <li>
+                        <a class="hov" href="{% url 'logout' %}">Log Out</a>
+                    </li>
+                    
+
+                    {% else %}
+                    <li>
+                        <a href="{% url 'login' %}">Log In</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'register' %}">Register</a>
+                    </li>
+                    {% endif %}
+
+
+                </ul>
+            </nav>
+        </div>
+    </nav>
+    <body>
+    <div class="body">
+        {% block body %} {% endblock %}
+    </div>
+</body>
+
+</html>

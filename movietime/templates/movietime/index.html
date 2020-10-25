@@ -1,0 +1,19 @@
+{% extends "movietime/layout.html" %}
+{%block search%}
+<form id="form" class="form form-inline my-2 my-lg-0" style="position:fixed;right:20px;top:7px">
+    <input class="search form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q" id="search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+{%endblock%}
+{%block searchs%}
+<li>
+    <form id="forms" class="form" style="width:24vw;">
+        <input class="form-control search" type="search" placeholder="Search" aria-label="Search" autocomplete="off" id="searchs">
+         <button class="btn btn-outline-success" type="submit" style="width:24vw;margin-top:20px;">Search</button>
+    </form>
+</li>
+{%endblock%}
+{%block script%}{%endblock%}
+{% block body %}
+<main id="main" class="mx-auto"></main>
+{% endblock %}

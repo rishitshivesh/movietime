@@ -1,0 +1,86 @@
+{% extends "movietime/layout.html" %} {%block style%}
+    @media(min-width:1000px) {
+        .box {
+            border: 2px solid black;
+            width: 80%;
+            margin-top: 2%;
+            margin-bottom: 2%;
+            border-radius: 15px;
+        }
+    }
+    
+    @media(max-width:1000px) {
+        .box {
+            border: 2px solid black;
+            width: 100%;
+            margin-top: 2%;
+            border-radius: 15px;
+        }
+    }
+
+{%endblock%} 
+{%block script%}
+<script src="../static/movietime/countrycodes.js"></script>
+{%endblock%}
+{% block body %}
+<center><img src="https://imgur.com/YpdkEY7.png" width="250" alt="Image" loading="lazy" style="align-self:center;" class="myclass"></center>
+<div class="align-middle">
+    <div class="box mx-auto">
+        <h2 style="text-align: center; padding:10px;">Register</h2>
+        <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            <div class="forms d-flex flex-column w-75 p-3 mx-auto">
+                {% if message %}
+                <br>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">{{ message }}<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button></div>
+                {% endif %}
+                <div class="input-group mb-3">
+                    <input class="form-control space" autofocus type="text" minlength="4" maxlength="12" name="username" placeholder="Username" required style="  border-radius: 25px;">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <input class="form-group form-control" type="email" name="email" placeholder="Email Id" required style="border-radius: 25px;">
+                    </div>
+                    <div class="form-group col-md-2">
+                    <select id='option' class="form-control" name='code' placeholder="Country Codes" required>
+                        <option disabled autofocus>Country Code</option><hr>
+                    </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <input class="form-control" type="number" minlength="8" maxlength="12" name="phone" placeholder="Phone Number" required style="border-radius: 25px;">
+                    </div>
+                </div>
+
+                <div class="d-inline-flex">
+                    <div class="w-50 mb-3">
+                        <input class="form-control space" type="text" name="firstname" placeholder="First Name" required style=" border-radius: 25px;">
+                    </div>
+                    <div class="w-50 mb-3">
+                        <input class="form-control space" type="text" name="lastname" placeholder="Last Name" style=" border-radius: 25px;">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="url" name="image" placeholder="Profile Picture URL" style=" border-radius: 25px;">
+                </div>
+
+                <div class="form-group">
+                    <input class="form-control" type="password" name="password" minlength="8" placeholder="Password" required style=" border-radius: 25px;">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" name="confirmation" placeholder="Confirm Password" required style=" border-radius: 25px;">
+                </div>
+                <input class="btn btn-warning w-50 mx-auto" type="submit" value="Register" style="border-radius: 25px;">
+            </div>
+        </form>
+
+
+
+        <hr>
+        <div style="text-align: center;padding-bottom:15px; color: #663399;">Already have an account? <a href="{% url 'login' %}">Log In here.</a> </div>
+        <div style="text-align: center;padding-bottom:15px; color:#663399">Host your image for free <a href="http://www.imgur.com">here</a>! </div>
+    </div>
+</div>
+{% endblock %}

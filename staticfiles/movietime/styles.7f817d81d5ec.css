@@ -1,0 +1,146 @@
+* {
+    font-family: 'Zilla Slab', serif;
+}
+
+
+.cursive{
+    font-family: 'Dancing Script', cursive;
+}
+
+@media(min-width:1000px) {
+    #big {
+        display: block;
+    }
+    #small {
+        display: none;
+    }
+    textarea {
+        min-height: 30vh;
+    }
+    .big {
+        display: table-cell;
+    }
+    
+}
+
+@media(max-width:1000px) {
+    #big {
+        display: none;
+    }
+    #small {
+        display: block;
+    }
+    textarea {
+        min-height: 50vh;
+    }
+    .big {
+        display: none;
+    }
+}
+
+.dropdown-menu {
+    background: rgb(255, 222, 0);
+    background: radial-gradient(circle, rgba(255, 221, 0, 0.945) 0%, rgba(255, 222, 5, 0.979) 100%);
+}
+
+.form-control:focus {
+    border-color: #663399;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(204, 0, 255, 0.473);
+}
+
+#bt {
+    background-color: #fed107dc;
+    border: none;
+    color: white;
+    position: relative;
+    top: 0px;
+    right: 0;
+    padding: 1rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+#bt.active {
+    transform: translateX(-35vw);
+}
+
+#navb {
+    background-color: #2a0053;
+    color: white;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    padding: 2rem;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+#navb.active {
+    transform: translateX(0);
+}
+
+#navb ul {
+    padding: 0;
+    list-style-type: none;
+    margin: 0;
+}
+
+#navb ul li {
+    padding: 1rem 0;
+}
+
+#navb a:hover {
+    color: yellow;
+    transition: 2s;
+}
+
+#navb a {
+    color: white;
+    text-decoration: none;
+}
+
+#mainbody{
+ height: 100vh;
+ max-width: 100vw;
+}
+
+.maintext{
+    width: 95%;
+    padding: 3%;
+    background: rgba(238, 208, 208, 0.75);
+    color: black;
+    margin-bottom: 5vh;
+}
+
+.header{
+    max-width: 95%;
+    padding: 2%;
+    margin:2%;
+    background: #663399;
+    color: white;
+}
+
+#booknow{
+    position: fixed;
+    bottom:3vh;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+    color:black;
+  }
+td {
+    text-align:center;
+}
+.heading{
+    font-weight: bold;
+    font-size: medium; 
+}
+
+.maintable{
+    width: 95%;
+    padding: 3%;
+    background: #66339936;
+    border-color: #FED007;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(255, 255, 0, 0.5);
+}
