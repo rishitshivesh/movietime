@@ -61,6 +61,8 @@
 
 #bt.active {
     transform: translateX(-35vw);
+    right:20px;
+    font-size: larger;
 }
 
 #navb {
