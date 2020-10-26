@@ -41,18 +41,6 @@ function showMovie(movie){
     //body.style.background = `url(${IMGPATH + movie.backdrop_path}) no-repeat center fixed`;
     // body.style.filter= 'blur(8px)';
     // text.style.backdrop="grayscale(0.5) opacity(0.8)";
-    var finalimage = "";
-    if(movie.backdrop_path){
-        finalimage = IMGPATH + movie.backdrop_path;
-    }
-    else if(movie.poster_path){
-        finalimage = IMGPATH + movie.poster_path;
-    }
-    else{
-        finalimage = "https://imgur.com/YpdkEY7.png";
-    }
-
-    
     if(movie.adult){
         var adult = "Yes";
     }
@@ -64,7 +52,7 @@ function showMovie(movie){
     <h1 style="color:auto; text-align:center;font-family: 'Dancing Script', cursive;">${movie.title}</h1>
     <center><i style="text-align:center;">${movie.tagline}</i></center>
     <hr>
-    <img src="${finalimage}" width="100%">
+    <img src="${IMGPATH + movie.backdrop_path}" width="100%">
     <span><b>Genres</b>: ${genres}</span><br>
     <b>Release date</b>: ${movie.release_date}<br>
     <b>Status</b>: ${movie.status}<br>
