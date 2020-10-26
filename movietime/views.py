@@ -117,9 +117,9 @@ def bookmovie(request,movieid):
         moviename = request.POST["moviename"]
         users = request.POST["username"]
         bookuser = User.objects.get(username=users)
-        check = Booking.objects.filter(SelectedDate=moviedate,SelectedTime=time,moviename=moviename,cancelled=False,user=request.user)
+        check = Booking.objects.filter(SelectedDate=moviedate,SelectedTime=time,movieid=movieid,cancelled=False,user=bookuser)
         check2 = Booking.objects.filter(movieid=movieid,user=bookuser,cancelled=False,SelectedDate=moviedate)
-        check3 = request.user.BookingQuota - Booking.objects.filter(user=bookuser,SelectedDate=moviedate,cancelled=False)
+        check3 = request.user.BookingQuota - Booking.objects.filter(user=bookuser,SelectedDate=moviedate,cancelled=False).count()
         if check:
             return render(request, "movietime/bookmovie.html",{
                 "movieid" : movieid,
