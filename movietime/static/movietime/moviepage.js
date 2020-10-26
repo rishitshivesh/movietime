@@ -37,7 +37,7 @@ function showMovie(movie){
         }
         languages += temp;
     });
-    console.log(movie.spoken_languages);
+    //console.log(movie.spoken_languages);
     //body.style.background = `url(${IMGPATH + movie.backdrop_path}) no-repeat center fixed`;
     // body.style.filter= 'blur(8px)';
     // text.style.backdrop="grayscale(0.5) opacity(0.8)";
@@ -58,6 +58,7 @@ function showMovie(movie){
     <b>Status</b>: ${movie.status}<br>
     <b>Runtime</b>: ${movie.runtime} minutes<br>
     <b>Spoken Languages</b>: ${languages}<br>
+    <b>Original Language</b>: ${original_language}<br>
     <hr> <p style="font-size:large;">${movie.overview}</p><hr>
     <b>Adult</b>: ${adult}<br>
     <b>IMDB</b>: <a href="https://www.imdb.com/title/${movie.imdb_id}"><i class='bx bxl-imdb' style="font-size:larger;"></i></a>
