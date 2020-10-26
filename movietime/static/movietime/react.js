@@ -32,12 +32,19 @@ function showMovies(movies) {
         const movieEl = document.createElement("div");
         movieEl.classList.add("movie");
         movieEl.classList.add("mx-auto");
+        var finalimage = "";
+        if(movie.poster_path){
+            finalimage = IMGPATH + movie.poster_path;
+        }
+        else{
+            finalimage = "https://imgur.com/YpdkEY7.png";
+        }
         movieEl.style.margin = '2%';
         if(adult) {
             movieEl.innerHTML = `
             <a href="movies/${id}">
                 <img
-                    src="${IMGPATH + poster_path}"
+                    src="${finalimage}"
                     alt="${title}"
                 />
                 <div class="movie-info">
