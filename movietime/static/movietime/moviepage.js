@@ -37,7 +37,7 @@ function showMovie(movie){
         }
         languages += temp;
     });
-
+    var finalpath="";
     if(movie.backdrop_path){
         finalpath = movie.backdrop_path;
     }
@@ -59,7 +59,7 @@ function showMovie(movie){
     <h1 style="color:auto; text-align:center;font-family: 'Dancing Script', cursive;">${movie.title}</h1>
     <center><i style="text-align:center;">${movie.tagline}</i></center>
     <hr>
-    <img src="${IMGPATH + movie.finalpath}" width="100%">
+    <img src="${IMGPATH + finalpath}" width="100%">
     <span><b>Genres</b>: ${genres}</span><br>
     <b>Release date</b>: ${movie.release_date}<br>
     <b>Status</b>: ${movie.status}<br>
