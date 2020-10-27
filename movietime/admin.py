@@ -5,8 +5,8 @@ from .models import User,Booking
 class UserDisplay(admin.ModelAdmin):
     list_display = ("id","first_name","last_name","username","email")
 class BookingDisplay(admin.ModelAdmin):
-    list_display = ("id","movieid","User","BookingTime","SelectedTime","SelectedDate")
-    list_filter = ("movieid","seat_user","SelectedTime")
+    list_display = ("id","movieid","user","BookingTime","SelectedTime","SelectedDate")
+    list_filter = ("movieid","user","SelectedTime")
 admin.site.register(User,UserDisplay)
 admin.site.register(Booking,BookingDisplay)
 
