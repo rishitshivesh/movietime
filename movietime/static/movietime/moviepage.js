@@ -65,7 +65,6 @@ function showMovie(movie){
     <b>Status</b>: ${movie.status}<br>
     <b>Runtime</b>: ${movie.runtime} minutes<br>
     <b>Spoken Languages</b>: ${languages}<br>
-    <b>Original Language</b>: ${original_language}<br>
     <hr> <p style="font-size:large;">${movie.overview}</p><hr>
     <b>Adult</b>: ${adult}<br>
     <b>IMDB</b>: <a href="https://www.imdb.com/title/${movie.imdb_id}"><i class='bx bxl-imdb' style="font-size:larger;"></i></a>
