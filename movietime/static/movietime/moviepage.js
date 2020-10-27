@@ -48,12 +48,6 @@ function showMovie(movie){
     //body.style.background = `url(${IMGPATH + movie.backdrop_path}) no-repeat center fixed`;
     // body.style.filter= 'blur(8px)';
     // text.style.backdrop="grayscale(0.5) opacity(0.8)";
-    if(movie.adult){
-        var adult = "Yes";
-    }
-    else{
-        var adult = "No";
-    }
     text.innerHTML = `
     
     <h1 style="color:auto; text-align:center;font-family: 'Dancing Script', cursive;">${movie.title}</h1>
@@ -66,7 +60,6 @@ function showMovie(movie){
     <b>Runtime</b>: ${movie.runtime} minutes<br>
     <b>Spoken Languages</b>: ${languages}<br>
     <hr> <p style="font-size:large;">${movie.overview}</p><hr>
-    <b>Adult</b>: ${adult}<br>
     <b>IMDB</b>: <a href="https://www.imdb.com/title/${movie.imdb_id}" target="_blank"><i class='bx bxl-imdb' style="font-size:larger;"></i></a>
     
     `; 
