@@ -8,7 +8,7 @@ class UserDisplay(admin.ModelAdmin):
 class BookingDisplay(admin.ModelAdmin):
     list_display = ("id","movieid","user","BookingTime","SelectedTime","SelectedDate","cancelled")
     list_filter = ("SelectedTime",('BookingTime', DateTimeRangeFilter),"cancelled")
-    search_fields = ("movieid","user__username","user__first_name","user__last_name","user__phonenumber","us    er__email","user__username","BookingTime","SelectedTime","SelectedDate")
+    search_fields = ("movieid","user__username","user__first_name","user__last_name","user__phonenumber","user__email","user__username","BookingTime","SelectedTime","SelectedDate")
     filter_horizontal = ()
     fieldsets = ()
 admin.site.register(User,UserDisplay)
