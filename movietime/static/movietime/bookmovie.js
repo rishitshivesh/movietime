@@ -23,13 +23,13 @@ document.addEventListener('DOMContentLoaded',()=>{
     var dte = new Date();
     var dt = new Date(dte);
     dt.setDate(dte.getDate()+1);
-    console.log(dt.toIsoString());
+    // console.log(dt.toIsoString());
     var nowdate = dt.toIsoString().slice(0,10);
-    console.log(date);
-    console.log(nowdate);
+    // console.log(date);
+    // console.log(nowdate);
     document.getElementById('movie-time').min=nowdate;
     document.getElementById('movie-time').value=nowdate;
-    console.log(document.getElementById('movie-time').value);
+    // console.log(document.getElementById('movie-time').value);
     currentid = document.querySelector('.selectedmovie').dataset.movieid;
 
     getMovies(`https://api.themoviedb.org/3/movie/${currentid}?&api_key=820aac8b72e06febfb590dfaa08636ca`);
@@ -37,13 +37,14 @@ document.addEventListener('DOMContentLoaded',()=>{
     async function getMovies(url) {
         const resp = await fetch(url);
         const respData = await resp.json();
-        console.log(respData);
+        // console.log(respData);
         editPage(respData);
     }
     
 });
 
 function editPage(movie){
+    if(movie.id){
     document.querySelector('img').src = IMGPATH+movie.poster_path;
     document.querySelector('.selectedmovie').innerHTML = movie.overview;
     document.querySelector('#moviename').innerHTML = movie.title;
@@ -58,5 +59,9 @@ function editPage(movie){
     Selected Date : ${movietime}<br>
     Selected Time : ${timeslot}
     
-    `;
+    `;}
+    else if(movie.success == false ){
+        console.log(`(${movie.status_code}) ${movie.status_message}`);
+        document.querySelector('#bookpagemovie').innerHTML=`<h1>The Requested Page Cannot be found!!</h1>`;
+    }
 }

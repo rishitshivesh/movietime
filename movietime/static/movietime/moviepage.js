@@ -6,7 +6,7 @@ const currentid = window.location.href.split('/')[4];
     async function getMovies(url) {
         const resp = await fetch(url);
         const respData = await resp.json();
-        console.log(respData);
+        // console.log(respData);
         showMovie(respData);
     }
 
@@ -16,6 +16,7 @@ function showMovie(movie){
     const body = document.querySelector('#mainbody');
     const text = document.querySelector('.maintext');
     document.querySelector('body').style.background='#22254b';
+    if (movie.id){
     document.querySelector('title').innerText=`MovieTime | ${movie.title}`;
     var genres = "";
     var languages ="";
@@ -63,4 +64,11 @@ function showMovie(movie){
     <b>IMDB</b>: <a href="https://www.imdb.com/title/${movie.imdb_id}" target="_blank"><i class='bx bxl-imdb' style="font-size:larger;"></i></a>
     
     `; 
+}
+
+    else if(movie.success == false ){
+        console.log(`(${movie.status_code}) ${movie.status_message}`);
+        text.innerHTML=`<h1>The Requested Page Cannot be found!!</h1>`;
+        document.getElementById('booknow').style.display = 'None';
+    }
 }
