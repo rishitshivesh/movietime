@@ -36,8 +36,19 @@ function getpost(id){
     // console.log(moviedate);
     // console.log(dateInPast);
     // console.log(moviedate<today);
-    if(movie.cancelled || moviedate<today){
+    if(moviedate<=today){
+        var now = new Date().toString().slice(16,25)
+        if(now>movie.SelectedTime){
+            dateInPast = true;
+            console.log(now);
+            console.log(movie.SelectedTime);
+            console.log(now>movie.SelectedTime);
+
+        }
+    }
+    if(movie.cancelled || dateInPast){
         document.querySelector('#moviecancel').style.display= 'None';
+        console.log(dateInPast);
     }
     else{
         document.querySelector('#moviecancel').style.display = 'Block';
