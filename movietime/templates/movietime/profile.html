@@ -8,7 +8,7 @@
         <center>
             <h2>Booking History</h2>
             <hr>
-            <img src={{user.image}} class="rounded-circle" width=240px style="object-fit: cover;">
+            <img src={{user.image}} class="rounded-circle" width=240px style="object-fit: cover;" onerror="this.onerror=null; this.src='https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png'">
             <h4>{{user.first_name}} {{user.last_name}} (@{{user.username}})</h4>
             <h5>{{user.email}}<br>{{user.countrycode}} - {{user.phonenumber}}</h5>  
         </center>
