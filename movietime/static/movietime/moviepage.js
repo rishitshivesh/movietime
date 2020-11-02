@@ -1,4 +1,6 @@
 const currentid = window.location.href.split('/')[4];    
+const APIURL ="https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=820aac8b72e06febfb590dfaa08636ca&page=1";
+const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
 //document.addEventListener('DOMContentLoaded',()=>{
     getMovies(`https://api.themoviedb.org/3/movie/${currentid}?&api_key=820aac8b72e06febfb590dfaa08636ca`);
