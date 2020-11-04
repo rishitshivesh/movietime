@@ -30,21 +30,26 @@ function getpost(id){
     //     document.querySelector('.cancelbutton').disabled= false;
     // }
     var dateInPast = false;
-    var today = new Date().toISOString().slice(0,10);
-    var moviedate = movie.SelectedDate; 
+    var today = new Date().toLocaleDateString();
+    var mdate = movie.SelectedDate; 
+    var moviedate = new Date(mdate).toLocaleDateString()
     // console.log(today);
-    // console.log(moviedate);
+    // console.log(new Date(moviedate).toLocaleDateString());
     // console.log(dateInPast);
     // console.log(moviedate<today);
-    if(moviedate<=today){
+    if(moviedate == today){
         var now = new Date().toString().slice(16,25)
-        if(now>movie.SelectedTime){
+        // console.log(now);
+        // console.log(movie.SelectedTime);
+        if(now >= movie.SelectedTime){
             dateInPast = true;
-            console.log(now);
-            console.log(movie.SelectedTime);
-            console.log(now>movie.SelectedTime);
-
+            // console.log(now);
+            // console.log(movie.SelectedTime);
+            // console.log(now>movie.SelectedTime);
         }
+    }
+    else if(moviedate < today){
+        dateInPast = true;
     }
     if(movie.cancelled || dateInPast){
         document.querySelector('#moviecancel').style.display= 'None';
@@ -54,7 +59,6 @@ function getpost(id){
         document.querySelector('#moviecancel').style.display = 'Block';
     }
     });
-
 }
 
 function del(id){
